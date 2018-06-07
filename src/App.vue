@@ -8,7 +8,7 @@
               <v-btn slot="activator" fab><v-icon>settings</v-icon></v-btn>
               <v-list>
                 <v-list-tile>
-                  <v-slider v-model="numBalls" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
+                  <v-slider v-model="numFoods" step="1" min="1" max="50" hint="N" persistent-hint ticks thumb-label/>
                 </v-list-tile>
               </v-list>
             </v-menu>
@@ -16,8 +16,8 @@
         </v-layout>
       </v-container>
       {{positions}}
-      <v-content id="balls">
-        <ball v-for="n in positions.length" 
+      <v-content id="foods">
+        <food v-for="n in positions.length" 
           :px="positions[n-1][0]"
           :py="positions[n-1][1]"
         />
@@ -29,19 +29,19 @@
 <script>
 
 import Vue from 'vue'
-import Ball from './components/Ball.vue'
+import Food from './components/Food.vue'
 
 
 export default {
   name: 'app',
   components: {
-    Ball
+    Food
   }, 
   methods: {
   },
   data: function() { 
     return {
-      numBalls: 1,
+      numFoods: 1,
       positions: [[50, 70]]
     }
   },
@@ -83,7 +83,7 @@ export default {
   top: 30px;
 }
 
-#balls {
+#foods {
   position: absolute;
   width: 100vw;
   height: 100vh;
