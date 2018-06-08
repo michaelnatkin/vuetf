@@ -15,12 +15,11 @@
           </v-flex>
         </v-layout>
       </v-container>
-      {{positions}}
+      {{positions[0]}}
       <v-content id="foods">
-        <food v-for="n in positions.length" 
-          :px="positions[n-1][0]"
-          :py="positions[n-1][1]"
-        />
+        <svg>
+          <food v-for="n in positions.length" :position="positions[n-1]" />
+        </svg>
       </v-content>
     </v-app>
   </div>
@@ -52,8 +51,7 @@ export default {
     setInterval(
       function() { 
         var p = data.positions[0];
-        p[0] += 1;
-        Vue.set(data.positions, 0, p);
+        Vue.set(p, 0, p[0] + 1)
       }, 100);
     
   }
@@ -87,7 +85,12 @@ export default {
   position: absolute;
   width: 100vw;
   height: 100vh;
-  transform: translateX(50vw) translateY(50vh);
+  background-color: hsl(60, 80%, 80%);
+}
+
+#foods svg {
+  width: 100%;
+  height: 100%;
 }
 
 #controls {
